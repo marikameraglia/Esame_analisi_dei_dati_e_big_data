@@ -5,9 +5,6 @@
 **Angelica Carrieri** & **Marika Meraglia** ---
 
 ## 📌 Visione d'Insieme del Progetto
-Il progetto simula l'infrastruttura dati di un'azienda moderna basata sulla **Polyglot Persistence**: l'idea di far cooperare database diversi tra loro a seconda del lavoro da svolgere. Invece di usare un solo database per fare tutto, questa architettura ne integra tre (uno relazionale e due NoSQL), collegati e gestiti insieme tramite script **Python**.
-
-## 📌 Visione d'Insieme del Progetto
 
 Il progetto simula l'infrastruttura dati di un'azienda moderna basata sulla **Polyglot Persistence**: l'idea di far cooperare database diversi tra loro a seconda del lavoro da svolgere. Invece di usare un solo database per fare tutto, questa architettura ne integra tre (uno relazionale e due NoSQL), collegati e gestiti insieme tramite script **Python**.
 
