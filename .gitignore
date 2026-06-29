@@ -1,0 +1,30 @@
+# === Python ===
+# Ignora le cartelle temporanee dove Python compila il codice per avviarlo più velocemente
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignora gli ambienti virtuali se li usate per installare le librerie (pip)
+venv/
+.venv/
+env/
+ENV/
+
+# === Ambienti di Sviluppo (IDE) ===
+# Ignora le configurazioni personali di VS Code o PyCharm
+.vscode/
+.idea/
+
+# === Database e Credenziali ===
+# Se salvate password o chiavi in un file .env per non metterle nel codice Python
+.env
+
+# Ignora file di log o dump di database temporanei che generate sul momento
+*.log
+*.sqlite
+data_dump.sql
+
+# === File di Sistema ===
+# File spazzatura che creano in automatico Windows o Mac nelle cartelle
+.DS_Store
+Thumbs.db
