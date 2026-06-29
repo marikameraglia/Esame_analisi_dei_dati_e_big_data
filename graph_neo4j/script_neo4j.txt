@@ -1,0 +1,401 @@
+CREATE CONSTRAINT FOR (l:Libro) REQUIRE l.id_libro IS UNIQUE;
+CREATE CONSTRAINT FOR (u:Lettore) REQUIRE u.email IS UNIQUE;
+CREATE CONSTRAINT FOR (b:Biblioteca) REQUIRE b.id_biblioteca IS UNIQUE;
+CREATE CONSTRAINT FOR (c:Copia) REQUIRE c.id_copia IS UNIQUE;
+
+// Autori
+MERGE (a1:Autore {nome: 'Alessandro', cognome: 'Manzoni'}) ON CREATE SET a1.nazionalita = 'Italiana'
+MERGE (a2:Autore {nome: 'Albert', cognome: 'Einstein'}) ON CREATE SET a2.nazionalita = 'Tedesca'
+MERGE (a3:Autore {nome: 'Umberto', cognome: 'Eco'}) ON CREATE SET a3.nazionalita = 'Italiana'
+MERGE (a4:Autore {nome: 'Stephen', cognome: 'Hawking'}) ON CREATE SET a4.nazionalita = 'Britannica'
+MERGE (a5:Autore {nome: 'George', cognome: 'Orwell'}) ON CREATE SET a5.nazionalita = 'Britannica'
+MERGE (a6:Autore {nome: 'Dante', cognome: 'Alighieri'}) ON CREATE SET a6.nazionalita = 'Italiana'
+MERGE (a7:Autore {nome: 'Arthur Conan', cognome: 'Doyle'}) ON CREATE SET a7.nazionalita = 'Britannica'
+MERGE (a8:Autore {nome: 'Isaac', cognome: 'Asimov'}) ON CREATE SET a8.nazionalita = 'Statunitense'
+MERGE (a9:Autore {nome: 'Friedrich', cognome: 'Nietzsche'}) ON CREATE SET a9.nazionalita = 'Tedesca'
+MERGE (a10:Autore {nome: 'Agatha', cognome: 'Christie'}) ON CREATE SET a10.nazionalita = 'Britannica'
+MERGE (a11:Autore {nome: 'Giacomo', cognome: 'Leopardi'}) ON CREATE SET a11.nazionalita = 'Italiana'
+MERGE (a12:Autore {nome: 'Italo', cognome: 'Calvino'}) ON CREATE SET a12.nazionalita = 'Italiana'
+MERGE (a13:Autore {nome: 'Gabriel García', cognome: 'Márquez'}) ON CREATE SET a13.nazionalita = 'Colombiana'
+MERGE (a14:Autore {nome: 'Charles', cognome: 'Darwin'}) ON CREATE SET a14.nazionalita = 'Britannica'
+MERGE (a15:Autore {nome: 'Walter', cognome: 'Isaacson'}) ON CREATE SET a15.nazionalita = 'Statunitense'
+MERGE (a16:Autore {nome: 'Virginia', cognome: 'Woolf'}) ON CREATE SET a16.nazionalita = 'Britannica'
+
+// Temi
+MERGE (t1:Tema {nome: 'Narrativa'})
+MERGE (t2:Tema {nome: 'Scienza'})
+MERGE (t3:Tema {nome: 'Storia'})
+MERGE (t4:Tema {nome: 'Saggistica'})
+MERGE (t5:Tema {nome: 'Filosofia'})
+MERGE (t6:Tema {nome: 'Distopia'})
+MERGE (t7:Tema {nome: 'Giallo'})
+MERGE (t8:Tema {nome: 'Biografia'})
+
+// Libri
+MERGE (l1:Libro {id_libro: 'L01'}) ON CREATE SET l1.titolo = 'I Promessi Sposi', l1.anno_pubblicazione = 1827, l1.lingua = 'Italiano'
+MERGE (l2:Libro {id_libro: 'L02'}) ON CREATE SET l2.titolo = 'La Relatività', l2.anno_pubblicazione = 1916, l2.lingua = 'Italiano'
+MERGE (l3:Libro {id_libro: 'L03'}) ON CREATE SET l3.titolo = 'Il Nome della Rosa', l3.anno_pubblicazione = 1980, l3.lingua = 'Italiano'
+MERGE (l4:Libro {id_libro: 'L04'}) ON CREATE SET l4.titolo = 'Storia della Colonna Infame', l4.anno_pubblicazione = 1843, l4.lingua = 'Italiano'
+MERGE (l5:Libro {id_libro: 'L05'}) ON CREATE SET l5.titolo = 'Dal big bang ai buchi neri', l5.anno_pubblicazione = 1988, l5.lingua = 'Italiano'
+MERGE (l6:Libro {id_libro: 'L06'}) ON CREATE SET l6.titolo = '1984', l6.anno_pubblicazione = 1949, l6.lingua = 'Italiano'
+MERGE (l7:Libro {id_libro: 'L07'}) ON CREATE SET l7.titolo = 'La fattoria degli animali', l7.anno_pubblicazione = 1945, l7.lingua = 'Italiano'
+MERGE (l8:Libro {id_libro: 'L08'}) ON CREATE SET l8.titolo = 'La Divina Commedia', l8.anno_pubblicazione = 1321, l8.lingua = 'Italiano'
+MERGE (l9:Libro {id_libro: 'L09'}) ON CREATE SET l9.titolo = 'Il mastino dei Baskerville', l9.anno_pubblicazione = 1902, l9.lingua = 'Italiano'
+MERGE (l10:Libro {id_libro: 'L10'}) ON CREATE SET l10.titolo = 'Cronache della galassia', l10.anno_pubblicazione = 1951, l10.lingua = 'Italiano'
+MERGE (l11:Libro {id_libro: 'L11'}) ON CREATE SET l11.titolo = 'Così parlò Zarathustra', l11.anno_pubblicazione = 1883, l11.lingua = 'Italiano'
+MERGE (l12:Libro {id_libro: 'L12'}) ON CREATE SET l12.titolo = 'Assassinio sull’Orient Express', l12.anno_pubblicazione = 1934, l12.lingua = 'Italiano'
+MERGE (l13:Libro {id_libro: 'L13'}) ON CREATE SET l13.titolo = 'I Canti', l13.anno_pubblicazione = 1831, l13.lingua = 'Italiano'
+MERGE (l14:Libro {id_libro: 'L14'}) ON CREATE SET l14.titolo = 'Il barone rampante', l14.anno_pubblicazione = 1957, l14.lingua = 'Italiano'
+MERGE (l15:Libro {id_libro: 'L15'}) ON CREATE SET l15.titolo = 'Cent’anni di solitudine', l15.anno_pubblicazione = 1967, l15.lingua = 'Italiano'
+MERGE (l16:Libro {id_libro: 'L16'}) ON CREATE SET l16.titolo = 'L’origine delle specie', l16.anno_pubblicazione = 1859, l16.lingua = 'Italiano'
+MERGE (l17:Libro {id_libro: 'L17'}) ON CREATE SET l17.titolo = 'Steve Jobs', l17.anno_pubblicazione = 2011, l17.lingua = 'Italiano'
+MERGE (l18:Libro {id_libro: 'L18'}) ON CREATE SET l18.titolo = 'Gita al faro', l18.anno_pubblicazione = 1927, l18.lingua = 'Italiano'
+
+// Biblioteche
+MERGE (b1:Biblioteca {id_biblioteca: 'B01'}) ON CREATE SET b1.nome = 'Biblioteca Centrale UniSalento', b1.citta = 'Lecce'
+MERGE (b2:Biblioteca {id_biblioteca: 'B02'}) ON CREATE SET b2.nome = 'Biblioteca Provinciale Nicola Bernardini', b2.citta = 'Lecce'
+
+// Lettori Principali (Voi)
+MERGE (u1:Lettore {email: 'marika@email.it'}) ON CREATE SET u1.nome = 'Marika', u1.cognome = 'Meraglia'
+MERGE (u2:Lettore {email: 'angelica@email.it'}) ON CREATE SET u2.nome = 'Angelica', u2.cognome = 'Carrieri'
+MERGE (u3:Lettore {email: 'luca@email.it'}) ON CREATE SET u3.nome = 'Luca', u3.cognome = 'Rossi'
+
+// Relazioni Catalogo
+MERGE (a1)-[:HA_SCRITTO]->(l1)
+MERGE (a1)-[:HA_SCRITTO]->(l4)
+MERGE (a2)-[:HA_SCRITTO]->(l2)
+MERGE (a3)-[:HA_SCRITTO]->(l3)
+MERGE (a4)-[:HA_SCRITTO]->(l5)
+MERGE (a5)-[:HA_SCRITTO]->(l6)
+MERGE (a5)-[:HA_SCRITTO]->(l7)
+MERGE (a6)-[:HA_SCRITTO]->(l8)
+MERGE (a7)-[:HA_SCRITTO]->(l9)
+MERGE (a8)-[:HA_SCRITTO]->(l10)
+MERGE (a9)-[:HA_SCRITTO]->(l11)
+MERGE (a10)-[:HA_SCRITTO]->(l12)
+MERGE (a11)-[:HA_SCRITTO]->(l13)
+MERGE (a12)-[:HA_SCRITTO]->(l14)
+MERGE (a13)-[:HA_SCRITTO]->(l15)
+MERGE (a14)-[:HA_SCRITTO]->(l16)
+MERGE (a15)-[:HA_SCRITTO]->(l17)
+MERGE (a16)-[:HA_SCRITTO]->(l18)
+
+MERGE (l1)-[:APPARTIENE_A]->(t1)
+MERGE (l1)-[:APPARTIENE_A]->(t3)
+MERGE (l4)-[:APPARTIENE_A]->(t3)
+MERGE (l2)-[:APPARTIENE_A]->(t2)
+MERGE (l3)-[:APPARTIENE_A]->(t1)
+MERGE (l3)-[:APPARTIENE_A]->(t3)
+MERGE (l5)-[:APPARTIENE_A]->(t2)
+MERGE (l5)-[:APPARTIENE_A]->(t4)
+MERGE (l6)-[:APPARTIENE_A]->(t1)
+MERGE (l6)-[:APPARTIENE_A]->(t6)
+MERGE (l7)-[:APPARTIENE_A]->(t1)
+MERGE (l7)-[:APPARTIENE_A]->(t4)
+MERGE (l8)-[:APPARTIENE_A]->(t1)
+MERGE (l8)-[:APPARTIENE_A]->(t3)
+MERGE (l9)-[:APPARTIENE_A]->(t1)
+MERGE (l9)-[:APPARTIENE_A]->(t7)
+MERGE (l10)-[:APPARTIENE_A]->(t1)
+MERGE (l10)-[:APPARTIENE_A]->(t2)
+MERGE (l11)-[:APPARTIENE_A]->(t4)
+MERGE (l11)-[:APPARTIENE_A]->(t5)
+MERGE (l12)-[:APPARTIENE_A]->(t1)
+MERGE (l12)-[:APPARTIENE_A]->(t7)
+MERGE (l13)-[:APPARTIENE_A]->(t1)
+MERGE (l14)-[:APPARTIENE_A]->(t1)
+MERGE (l15)-[:APPARTIENE_A]->(t1)
+MERGE (l16)-[:APPARTIENE_A]->(t2)
+MERGE (l16)-[:APPARTIENE_A]->(t4)
+MERGE (l17)-[:APPARTIENE_A]->(t4)
+MERGE (l17)-[:APPARTIENE_A]->(t8)
+MERGE (l18)-[:APPARTIENE_A]->(t1)
+
+WITH [
+  'Francesco', 'Alessandro', 'Andrea', 'Matteo', 'Lorenzo', 
+  'Gabriele', 'Mattia', 'Davide', 'Riccardo', 'Tommaso', 
+  'Giulia', 'Sofia', 'Martina', 'Sara', 'Chiara', 
+  'Giorgia', 'Aurora', 'Alice', 'Emma', 'Alessia',
+  'Giuseppe', 'Antonio', 'Giovanni', 'Roberto', 'Stefano',
+  'Marco', 'Federico', 'Leonardo', 'Simone', 'Christian'
+] AS nomi,
+[
+  'Rossi', 'Ferrari', 'Russo', 'Bianchi', 'Esposito', 
+  'Colombo', 'Romano', 'Ricci', 'Marini', 'Greco', 
+  'Bruno', 'Gallo', 'Conti', 'De Luca', 'Costa', 
+  'Giordano', 'Mancini', 'Rizzo', 'Lombardi', 'Moretti',
+  'Barbieri', 'Fontana', 'Santoro', 'Mariani', 'Rinaldi',
+  'Caruso', 'Ferraro', 'Leone', 'Longo', 'Martinelli'
+] AS cognomi
+
+UNWIND RANGE(1, 50) AS i
+WITH nomi, cognomi, i,
+     nomi[toInteger(rand() * size(nomi))] AS nome_scelto,
+     cognomi[toInteger(rand() * size(cognomi))] AS cognome_scelto
+
+MERGE (u:Lettore {email: 'utente' + i + '@email.it'})
+ON CREATE SET u.nome = nome_scelto, 
+              u.cognome = cognome_scelto;
+
+WITH count(*) as finto_passaggio
+MATCH (b:Biblioteca), (l:Libro)
+UNWIND RANGE(1, 4) AS num_copia
+MERGE (c:Copia {id_copia: 'C_' + b.id_biblioteca + '_' + l.id_libro + '_' + num_copia})
+ON CREATE SET c.stato = 'Disponibile'
+MERGE (b)-[:POSSIEDE]->(c)
+MERGE (c)-[:COPIA_DI]->(l);
+
+WITH count(*) as finto_passaggio2
+MATCH (u:Lettore), (c:Copia)
+WHERE u.email STARTS WITH 'utente'
+WITH u, c WHERE rand() < 0.05
+LIMIT 120
+MERGE (u)-[r:HA_IN_PRESTITO]->(c)
+ON CREATE SET r.data_inizio = '2026-06-' + toInteger(rand()*28 + 1), r.stato = 'Attivo';
+
+WITH count(*) as finto_passaggio3
+MATCH (u1:Lettore {email: 'marika@email.it'}), (c1:Copia {id_copia: 'C_B01_L06_1'}) MERGE (u1)-[:HA_IN_PRESTITO {data_inizio: '2026-06-20', stato: 'Attivo'}]->(c1)
+MATCH (u12:Lettore {email: 'marika@email.it'}), (c12:Copia {id_copia: 'C_B01_L12_1'}) MERGE (u12)-[:HA_IN_PRESTITO {data_inizio: '2026-06-21', stato: 'Attivo'}]->(c12)
+MATCH (u2:Lettore {email: 'angelica@email.it'}), (c2:Copia {id_copia: 'C_B02_L07_1'}) MERGE (u2)-[:HA_IN_PRESTITO {data_inizio: '2026-06-22', stato: 'Attivo'}]->(c2)
+MATCH (u3:Lettore {email: 'luca@email.it'}), (c3:Copia {id_copia: 'C_B01_L16_1'}) MERGE (u3)-[:HA_IN_PRESTITO {data_inizio: '2026-06-23', stato: 'Attivo'}]->(c3);
+
+// ==========================================
+// ESPANSIONE DELLE BIBLIOTECHE CON SEDI REALI
+// ==========================================
+
+// B03: Biblioteca di Interfacoltà "Teodoro Pellegrino" (Studium 2000 - Porta Napoli)
+MERGE (b3:Biblioteca {id_biblioteca: 'B03'}) 
+ON CREATE SET b3.nome = 'Biblioteca di Interfacoltà Teodoro Pellegrino', b3.citta = 'Lecce';
+
+// B04: Biblioteca del Campus Ecotekne (Via per Monteroni)
+MERGE (b4:Biblioteca {id_biblioteca: 'B04'}) 
+ON CREATE SET b4.nome = 'Biblioteca del Polo Scientifico Ecotekne', b4.citta = 'Lecce';
+
+// B05: Biblioteca Comunale di Maglie (Francesco Piccinno)
+MERGE (b5:Biblioteca {id_biblioteca: 'B05'}) 
+ON CREATE SET b5.nome = 'Biblioteca Comunale Francesco Piccinno', b5.citta = 'Maglie';
+
+// B06: Biblioteca Comunale di Nardò (Achille Vergari)
+MERGE (b6:Biblioteca {id_biblioteca: 'B06'}) 
+ON CREATE SET b6.nome = 'Biblioteca Comunale Achille Vergari', b6.citta = 'Nardò';
+
+// ==========================================
+// ANAGRAFICA COMPLETA - 15 BIBLIOTECHE REALI (SALENTO)
+// ==========================================
+
+// Poli Universitari (UniSalento)
+MERGE (b1:Biblioteca {id_biblioteca: 'B01'}) ON CREATE SET b1.nome = 'Biblioteca Centrale UniSalento', b1.citta = 'Lecce'
+MERGE (b3:Biblioteca {id_biblioteca: 'B03'}) ON CREATE SET b3.nome = 'Biblioteca di Interfacoltà Teodoro Pellegrino (Studium 2000)', b3.citta = 'Lecce'
+MERGE (b4:Biblioteca {id_biblioteca: 'B04'}) ON CREATE SET b4.nome = 'Biblioteca del Polo Scientifico Ecotekne', b4.citta = 'Lecce'
+MERGE (b7:Biblioteca {id_biblioteca: 'B07'}) ON CREATE SET b7.nome = 'Biblioteca di Economia (Polo Ecotekne)', b7.citta = 'Lecce'
+MERGE (b8:Biblioteca {id_biblioteca: 'B08'}) ON CREATE SET b8.nome = 'Biblioteca di Giurisprudenza (Palazzo Del Prete)', b8.citta = 'Lecce'
+
+// Biblioteche Storiche e Provinciali a Lecce
+MERGE (b2:Biblioteca {id_biblioteca: 'B02'}) ON CREATE SET b2.nome = 'Biblioteca Provinciale Nicola Bernardini', b2.citta = 'Lecce'
+MERGE (b9:Biblioteca {id_biblioteca: 'B09'}) ON CREATE SET b9.nome = 'Biblioteca Comunale Caracciolo', b9.citta = 'Lecce'
+
+// Biblioteche Comunali della Provincia (Grandi Comuni)
+MERGE (b5:Biblioteca {id_biblioteca: 'B05'}) ON CREATE SET b5.nome = 'Biblioteca Comunale Francesco Piccinno', b5.citta = 'Maglie'
+MERGE (b6:Biblioteca {id_biblioteca: 'B06'}) ON CREATE SET b6.nome = 'Biblioteca Comunale Achille Vergari', b6.citta = 'Nardò'
+MERGE (b10:Biblioteca {id_biblioteca: 'B10'}) ON CREATE SET b10.nome = 'Biblioteca Comunale Giovanni Pascoli', b10.citta = 'Casarano'
+MERGE (b11:Biblioteca {id_biblioteca: 'B11'}) ON CREATE SET b11.nome = 'Biblioteca Comunale Roberto Caracciolo', b11.citta = 'Martano'
+MERGE (b12:Biblioteca {id_biblioteca: 'B12'}) ON CREATE SET b12.nome = 'Biblioteca Comunale G. Rizzo', b12.citta = 'Cavallino'
+MERGE (b13:Biblioteca {id_biblioteca: 'B13'}) ON CREATE SET b13.nome = 'Biblioteca Comunale L. Mea', b13.citta = 'Galatina'
+MERGE (b14:Biblioteca {id_biblioteca: 'B14'}) ON CREATE SET b14.nome = 'Biblioteca Comunale Egidio Menga', b14.citta = 'Copertino'
+MERGE (b15:Biblioteca {id_biblioteca: 'B15'}) ON CREATE SET b15.nome = 'Biblioteca Comunale Don Girolamo Marseglia', b15.citta = 'Campi Salentina'
+
+// Poli Universitari Lecce
+MERGE (b1:Biblioteca {id_biblioteca: 'B01'}) ON CREATE SET b1.nome = 'Biblioteca Centrale UniSalento', b1.citta = 'Lecce', b1.latitudine = 40.3506, b1.longitudine = 18.1610, b1.quartiere = 'Porta Rudiae'
+MERGE (b3:Biblioteca {id_biblioteca: 'B03'}) ON CREATE SET b3.nome = 'Biblioteca di Interfacoltà T. Pellegrino', b3.citta = 'Lecce', b3.latitudine = 40.3582, b3.longitudine = 18.1672, b3.quartiere = 'Porta Napoli'
+MERGE (b4:Biblioteca {id_biblioteca: 'B04'}) ON CREATE SET b4.nome = 'Biblioteca Polo Scientifico Ecotekne', b4.citta = 'Lecce', b4.latitudine = 40.3341, b4.longitudine = 18.1189, b4.quartiere = 'Ecotekne'
+MERGE (b7:Biblioteca {id_biblioteca: 'B07'}) ON CREATE SET b7.nome = 'Biblioteca di Economia (Polo Ecotekne)', b7.citta = 'Lecce', b7.latitudine = 40.3345, b7.longitudine = 18.1192, b7.quartiere = 'Ecotekne'
+MERGE (b8:Biblioteca {id_biblioteca: 'B08'}) ON CREATE SET b8.nome = 'Biblioteca di Giurisprudenza', b8.citta = 'Lecce', b8.latitudine = 40.3541, b8.longitudine = 18.1685, b8.quartiere = 'Centro Storico'
+
+// Altre sedi storiche e provinciali
+MERGE (b2:Biblioteca {id_biblioteca: 'B02'}) ON CREATE SET b2.nome = 'Biblioteca Provinciale N. Bernardini', b2.citta = 'Lecce', b2.latitudine = 40.3524, b2.longitudine = 18.1729, b2.quartiere = 'Centro'
+MERGE (b9:Biblioteca {id_biblioteca: 'B09'}) ON CREATE SET b9.nome = 'Biblioteca Comunale Caracciolo', b9.citta = 'Lecce', b9.latitudine = 40.3560, b9.longitudine = 18.1760, b9.quartiere = 'San Pio'
+
+// Provincia
+MERGE (b5:Biblioteca {id_biblioteca: 'B05'}) ON CREATE SET b5.nome = 'Biblioteca Comunale F. Piccinno', b5.citta = 'Maglie', b5.latitudine = 40.1204, b5.longitudine = 18.2315, b5.quartiere = 'Centro'
+MERGE (b6:Biblioteca {id_biblioteca: 'B06'}) ON CREATE SET b6.nome = 'Biblioteca Comunale A. Vergari', b6.citta = 'Nardò', b6.latitudine = 40.1791, b6.longitudine = 18.0312, b6.quartiere = 'Centro'
+MERGE (b10:Biblioteca {id_biblioteca: 'B10'}) ON CREATE SET b10.nome = 'Biblioteca Comunale G. Pascoli', b10.citta = 'Casarano', b10.latitudine = 40.0862, b10.longitudine = 18.1634, b10.quartiere = 'Centro'
+MERGE (b11:Biblioteca {id_biblioteca: 'B11'}) ON CREATE SET b11.nome = 'Biblioteca Comunale R. Caracciolo', b11.citta = 'Martano', b11.latitudine = 40.2014, b11.longitudine = 18.3032, b11.quartiere = 'Centro'
+MERGE (b12:Biblioteca {id_biblioteca: 'B12'}) ON CREATE SET b12.nome = 'Biblioteca Comunale G. Rizzo', b12.citta = 'Cavallino', b12.latitudine = 40.3112, b12.longitudine = 18.2025, b12.quartiere = 'Centro'
+MERGE (b13:Biblioteca {id_biblioteca: 'B13'}) ON CREATE SET b13.nome = 'Biblioteca Comunale L. Mea', b13.citta = 'Galatina', b13.latitudine = 40.1738, b13.longitudine = 18.1689, b13.quartiere = 'Centro'
+MERGE (b14:Biblioteca {id_biblioteca: 'B14'}) ON CREATE SET b14.nome = 'Biblioteca Comunale E. Menga', b14.citta = 'Copertino', b14.latitudine = 40.2715, b14.longitudine = 18.0489, b14.quartiere = 'Centro'
+MERGE (b15:Biblioteca {id_biblioteca: 'B15'}) ON CREATE SET b15.nome = 'Biblioteca Comunale G. Marseglia', b15.citta = 'Campi Salentina', b15.latitudine = 40.4023, b15.longitudine = 18.0211, b15.quartiere = 'Centro';
+
+// 1. CREAZIONE COPIE FISICHE NELLE BIBLIOTECHE REALI
+MATCH (b:Biblioteca {id_biblioteca: 'B01'}), (l1:Libro {id_libro: 'L06'})
+MERGE (c1:Copia {id_copia: 'C_B01_L06_1'}) ON CREATE SET c1.stato = 'Disponibile'
+MERGE (b)-[:POSSIEDE]->(c1) MERGE (c1)-[:COPIA_DI]->(l1);
+
+MATCH (b:Biblioteca {id_biblioteca: 'B01'}), (l2:Libro {id_libro: 'L12'})
+MERGE (c2:Copia {id_copia: 'C_B01_L12_1'}) ON CREATE SET c2.stato = 'Disponibile'
+MERGE (b)-[:POSSIEDE]->(c2) MERGE (c2)-[:COPIA_DI]->(l2);
+
+MATCH (b:Biblioteca {id_biblioteca: 'B02'}), (l3:Libro {id_libro: 'L07'})
+MERGE (c3:Copia {id_copia: 'C_B02_L07_1'}) ON CREATE SET c3.stato = 'Disponibile'
+MERGE (b)-[:POSSIEDE]->(c3) MERGE (c3)-[:COPIA_DI]->(l3);
+
+MATCH (b:Biblioteca {id_biblioteca: 'B01'}), (l4:Libro {id_libro: 'L16'})
+MERGE (c4:Copia {id_copia: 'C_B01_L16_1'}) ON CREATE SET c4.stato = 'Disponibile'
+MERGE (b)-[:POSSIEDE]->(c4) MERGE (c4)-[:COPIA_DI]->(l4);
+
+// 2. GENERAZIONE STORICO PRESTITI PER IL CALCOLO DELLE AFFINITÀ
+MATCH (u1:Lettore {email: 'marika@email.it'}), (c1:Copia {id_copia: 'C_B01_L06_1'}) 
+MERGE (u1)-[:HA_IN_PRESTITO {data_inizio: '2026-06-20', stato: 'Attivo'}]->(c1);
+
+MATCH (u12:Lettore {email: 'marika@email.it'}), (c12:Copia {id_copia: 'C_B01_L12_1'}) 
+MERGE (u12)-[:HA_IN_PRESTITO {data_inizio: '2026-06-21', stato: 'Attivo'}]->(c12);
+
+MATCH (u2:Lettore {email: 'angelica@email.it'}), (c2:Copia {id_copia: 'C_B02_L07_1'}) 
+MERGE (u2)-[:HA_IN_PRESTITO {data_inizio: '2026-06-22', stato: 'Attivo'}]->(c2);
+
+MATCH (u3:Lettore {email: 'luca@email.it'}), (c3:Copia {id_copia: 'C_B01_L16_1'}) 
+MERGE (u3)-[:HA_IN_PRESTITO {data_inizio: '2026-06-23', stato: 'Attivo'}]->(c3);
+
+// ------------------------------------------------------------------------------
+// FASE 9: GENERAZIONE DELLO STORICO DEI PRESTITI REALE E COERENTE (SENZA APOC)
+// Genera 150 relazioni con logica temporale (2024-2026) e distinzione tra Attivo/Concluso
+// ------------------------------------------------------------------------------
+MATCH (u:Lettore), (c:Copia)
+WHERE u.email STARTS WITH 'utente'
+WITH u, c WHERE rand() < 0.05
+LIMIT 150
+WITH u, c, 
+     toInteger(rand() * 3) + 2024 AS anno, 
+     toInteger(rand() * 11) + 1 AS mese, 
+     toInteger(rand() * 27) + 1 AS giorno
+WITH u, c, 
+     anno + "-" + right("0" + mese, 2) + "-" + right("0" + giorno, 2) AS data_inizio_calc, 
+     rand() AS tipo_prestito
+
+MERGE (u)-[r:HA_IN_PRESTITO]->(c)
+ON CREATE SET 
+  r.data_inizio = data_inizio_calc,
+  r.stato = CASE WHEN tipo_prestito < 0.7 THEN 'Concluso' ELSE 'Attivo' END,
+  r.data_fine = CASE WHEN tipo_prestito < 0.7 THEN date(data_inizio_calc) + duration({days: toInteger(rand()*25)+5}) ELSE null END
+
+// Passaggio di stato prima del caricamento dei test di scenario per il gruppo
+WITH count(*) as check_storico
+
+// ------------------------------------------------------------------------------
+// FASE 10: INSERIMENTO DI PRESTITI TARGET SU DI VOI (PER VALIDARE LE QUERY ANALITICHE)
+// Garantisce la presenza di intersezioni semantiche per i risultati del PowerPoint
+// ------------------------------------------------------------------------------
+MATCH (u1:Lettore {email: 'marika@email.it'}), (c1:Copia {id_copia: 'C_B01_L06_1'}) MERGE (u1)-[:HA_IN_PRESTITO {data_inizio: '2026-06-20', stato: 'Attivo'}]->(c1)
+MATCH (u12:Lettore {email: 'marika@email.it'}), (c12:Copia {id_copia: 'C_B01_L12_1'}) MERGE (u12)-[:HA_IN_PRESTITO {data_inizio: '2026-06-21', stato: 'Attivo'}]->(c12)
+MATCH (u2:Lettore {email: 'angelica@email.it'}), (c2:Copia {id_copia: 'C_B02_L07_1'}) MERGE (u2)-[:HA_IN_PRESTITO {data_inizio: '2026-06-22', stato: 'Attivo'}]->(c2)
+MATCH (u3:Lettore {email: 'rebecca@email.it'}), (c3:Copia {id_copia: 'C_B01_L16_1'}) MERGE (u3)-[:HA_IN_PRESTITO {data_inizio: '2026-06-23', stato: 'Attivo'}]->(c3)
+
+// Passaggio finale per l'allineamento di consistenza interna
+WITH count(*) as check_target
+
+// ------------------------------------------------------------------------------
+// FASE 11: ALLINEAMENTO DINAMICO DELLA COERENZA DELLO STATO
+// Se una Copia fisica ha un prestito 'Attivo', il suo stato sullo scaffale diventa 'In Prestito'
+// ------------------------------------------------------------------------------
+MATCH (:Lettore)-[r:HA_IN_PRESTITO {stato: 'Attivo'}]->(c:Copia)
+SET c.stato = 'In Prestito'
+RETURN count(c) AS CopieAllineateInPrestito;
+
+
+// Poli Universitari Lecce
+MERGE (b1:Biblioteca {id_biblioteca: 'B01'}) 
+ON CREATE SET b1.nome = 'Biblioteca Centrale UniSalento', b1.citta = 'Lecce'
+ON MATCH SET b1.latitudine = 40.3506, b1.longitudine = 18.1610, b1.quartiere = 'Porta Rudiae'
+
+MERGE (b3:Biblioteca {id_biblioteca: 'B03'}) 
+ON CREATE SET b3.nome = 'Biblioteca di Interfacoltà T. Pellegrino', b3.citta = 'Lecce'
+ON MATCH SET b3.latitudine = 40.3582, b3.longitudine = 18.1672, b3.quartiere = 'Porta Napoli'
+
+MERGE (b4:Biblioteca {id_biblioteca: 'B04'}) 
+ON CREATE SET b4.nome = 'Biblioteca Polo Scientifico Ecotekne', b4.citta = 'Lecce'
+ON MATCH SET b4.latitudine = 40.3341, b4.longitudine = 18.1189, b4.quartiere = 'Ecotekne'
+
+MERGE (b7:Biblioteca {id_biblioteca: 'B07'}) 
+ON CREATE SET b7.nome = 'Biblioteca di Economia (Polo Ecotekne)', b7.citta = 'Lecce'
+ON MATCH SET b7.latitudine = 40.3345, b7.longitudine = 18.1192, b7.quartiere = 'Ecotekne'
+
+MERGE (b8:Biblioteca {id_biblioteca: 'B08'}) 
+ON CREATE SET b8.nome = 'Biblioteca di Giurisprudenza', b8.citta = 'Lecce'
+ON MATCH SET b8.latitudine = 40.3541, b8.longitudine = 18.1685, b8.quartiere = 'Centro Storico'
+
+// Altre sedi storiche e provinciali
+MERGE (b2:Biblioteca {id_biblioteca: 'B02'}) 
+ON CREATE SET b2.nome = 'Biblioteca Provinciale N. Bernardini', b2.citta = 'Lecce'
+ON MATCH SET b2.latitudine = 40.3524, b2.longitudine = 18.1729, b2.quartiere = 'Centro'
+
+MERGE (b9:Biblioteca {id_biblioteca: 'B09'}) 
+ON CREATE SET b9.nome = 'Biblioteca Comunale Caracciolo', b9.citta = 'Lecce'
+ON MATCH SET b9.latitudine = 40.3560, b9.longitudine = 18.1760, b9.quartiere = 'San Pio'
+
+// Provincia
+MERGE (b5:Biblioteca {id_biblioteca: 'B05'}) 
+ON CREATE SET b5.nome = 'Biblioteca Comunale F. Piccinno', b5.citta = 'Maglie'
+ON MATCH SET b5.latitudine = 40.1204, b5.longitudine = 18.2315, b5.quartiere = 'Centro'
+
+MERGE (b6:Biblioteca {id_biblioteca: 'B06'}) 
+ON CREATE SET b6.nome = 'Biblioteca Comunale A. Vergari', b6.citta = 'Nardò'
+ON MATCH SET b6.latitudine = 40.1791, b6.longitudine = 18.0312, b6.quartiere = 'Centro'
+
+MERGE (b10:Biblioteca {id_biblioteca: 'B10'}) 
+ON CREATE SET b10.nome = 'Biblioteca Comunale G. Pascoli', b10.citta = 'Casarano'
+ON MATCH SET b10.latitudine = 40.0862, b10.longitudine = 18.1634, b10.quartiere = 'Centro'
+
+MERGE (b11:Biblioteca {id_biblioteca: 'B11'}) 
+ON CREATE SET b11.nome = 'Biblioteca Comunale R. Caracciolo', b11.citta = 'Martano'
+ON MATCH SET b11.latitudine = 40.2014, b11.longitudine = 18.3032, b11.quartiere = 'Centro'
+
+MERGE (b12:Biblioteca {id_biblioteca: 'B12'}) 
+ON CREATE SET b12.nome = 'Biblioteca Comunale G. Rizzo', b12.citta = 'Cavallino'
+ON MATCH SET b12.latitudine = 40.3112, b12.longitudine = 18.2025, b12.quartiere = 'Centro'
+
+MERGE (b13:Biblioteca {id_biblioteca: 'B13'}) 
+ON CREATE SET b13.nome = 'Biblioteca Comunale L. Mea', b13.citta = 'Galatina'
+ON MATCH SET b13.latitudine = 40.1738, b13.longitudine = 18.1689, b13.quartiere = 'Centro'
+
+MERGE (b14:Biblioteca {id_biblioteca: 'B14'}) 
+ON CREATE SET b14.nome = 'Biblioteca Comunale E. Menga', b14.citta = 'Copertino'
+ON MATCH SET b14.latitudine = 40.2715, b14.longitudine = 18.0489, b14.quartiere = 'Centro'
+
+MERGE (b15:Biblioteca {id_biblioteca: 'B15'}) 
+ON CREATE SET b15.nome = 'Biblioteca Comunale G. Marseglia', b15.citta = 'Campi Salentina'
+ON MATCH SET b15.latitudine = 40.4023, b15.longitudine = 18.0211, b15.quartiere = 'Centro';
+
+WITH count(*) as finto_passaggio_temp
+MATCH (u:Lettore), (c:Copia)
+WHERE u.email STARTS WITH 'utente'
+WITH u, c WHERE rand() < 0.05
+LIMIT 150
+WITH u, c, 
+     toInteger(rand() * 3) + 2024 AS anno, 
+     toInteger(rand() * 11) + 1 AS mese, 
+     toInteger(rand() * 27) + 1 AS giorno
+WITH u, c, 
+     anno + "-" + right("0" + mese, 2) + "-" + right("0" + giorno, 2) AS data_inizio_calc, 
+     rand() AS tipo_prestito
+
+MERGE (u)-[r:HA_IN_PRESTITO]->(c)
+ON CREATE SET 
+  r.data_inizio = data_inizio_calc,
+  r.stato = CASE WHEN tipo_prestito < 0.7 THEN 'Concluso' ELSE 'Attivo' END,
+  r.data_fine = CASE WHEN tipo_prestito < 0.7 THEN date(data_inizio_calc) + duration({days: toInteger(rand()*25)+5}) ELSE null END;
+
+MATCH (:Lettore)-[r:HA_IN_PRESTITO {stato: 'Attivo'}]->(c:Copia)
+SET c.stato = 'In Prestito'
+RETURN count(c) AS CopieAggiornateInPrestito;
+
+// ==========================================
+// CREAZIONE DEGLI INDICI PER L'OTTIMIZZAZIONE (DA SLIDE)
+// ==========================================
+
+// Indice sul titolo del libro per velocizzare la ricerca testuale
+CREATE INDEX libro_titolo_index FOR (l:Libro) ON (l.titolo);
+
+// Indice sullo stato delle copie fisiche (fondamentale per i filtri di disponibilità)
+CREATE INDEX copia_stato_index FOR (c:Copia) ON (c.stato);
+
+// Indice composito su nome e cognome del lettore per le ricerche anagrafiche
+CREATE INDEX lettore_anagrafica_index FOR (u:Lettore) ON (u.nome, u.cognome);

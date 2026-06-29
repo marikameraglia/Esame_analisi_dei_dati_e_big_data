@@ -1,0 +1,56 @@
+
+// ==============================================================================
+// QUERY 1 CORRETTA: RACCOMANDAZIONE DI LIBRI SIMILI
+// ==============================================================================
+MATCH (l_target:Libro {id_libro: 'L06'})
+MATCH (l_target)-[:APPARTIENE_A]->(t:Tema)<-[:APPARTIENE_A]-(l_simile:Libro)
+WHERE l_simile <> l_target
+
+// Verifichiamo anche se condividono lo stesso autore
+OPTIONAL MATCH (l_target)<-[:HA_SCRITTO]-(a:Autore)-[:HA_SCRITTO]->(l_simile)
+
+WITH l_simile, 
+     count(DISTINCT t) AS TemiInComune, 
+     CASE WHEN a IS NOT NULL THEN 1 ELSE 0 END AS StessoAutore
+
+RETURN l_simile.id_libro AS ID,
+       l_simile.titolo AS Titolo, 
+       TemiInComune,
+       CASE WHEN StessoAutore = 1 THEN 'Sì' ELSE 'No' END AS StessoAutore,
+       (TemiInComune * 2) + (StessoAutore * 5) AS ScoreSomiglianza
+ORDER BY ScoreSomiglianza DESC, TemiInComune DESC;
+
+// ==============================================================================
+// QUERY 2: INDIVIDUAZIONE LETTORI CON INTERESSI AFFINI (TEMI CONDIVISI)
+// ==============================================================================
+MATCH (u_target:Lettore {email: 'marika@email.it'})-[r1:HA_IN_PRESTITO]->(:Copia)-[:COPIA_DI]->(:Libro)-[:APPARTIENE_A]->(t:Tema)
+WITH DISTINCT u_target, t
+
+// Troviamo altri lettori che hanno preso in prestito libri con gli stessi temi
+MATCH (l_affine:Lettore)-[r2:HA_IN_PRESTITO]->(:Copia)-[:COPIA_DI]->(:Libro)-[:APPARTIENE_A]->(t)
+WHERE l_affine <> u_target
+
+RETURN l_affine.nome AS Nome, 
+       l_affine.cognome AS Cognome, 
+       l_affine.email AS Email,
+       count(DISTINCT t) AS TemiCondivisiInsieme,
+       COLLECT(DISTINCT t.nome) AS ListaTemiInComune
+ORDER BY TemiCondivisiInsieme DESC, Cognome ASC
+LIMIT 10;
+
+// ==============================================================================
+// QUERY 3: BIBLIOTECHE PIÙ VICINE AGLI INTERESSI DI UN UTENTE (CON FILTRO DISPONIBILITÀ)
+// ==============================================================================
+MATCH (u:Lettore {email: 'marika@email.it'})-[r:HA_IN_PRESTITO]->(:Copia)-[:COPIA_DI]->(:Libro)-[:APPARTIENE_A]->(tema_preferito:Tema)
+WITH DISTINCT tema_preferito
+
+MATCH (b:Biblioteca)-[:POSSIEDE]->(c:Copia)-[:COPIA_DI]->(l:Libro)-[:APPARTIENE_A]->(tema_preferito)
+WHERE c.stato = 'Disponibile'
+
+RETURN b.nome AS BibliotecaConsigliata, 
+       b.citta AS Citta,
+       b.quartiere AS Zona_Quartiere,
+       count(c) AS CopieDisponibiliPerITuoiInteressi
+ORDER BY Citta = 'Lecce' DESC, CopieDisponibiliPerITuoiInteressi DESC;
+
+

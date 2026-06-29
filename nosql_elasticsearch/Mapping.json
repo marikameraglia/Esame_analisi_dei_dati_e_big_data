@@ -1,0 +1,165 @@
+# 1. Creazione indice hotel con mappatura geografica
+PUT /hotel
+{
+  "mappings": {
+    "properties": {
+      "id_hotel": { "type": "keyword" },
+      "nome": { "type": "text" },
+      "descrizione": { "type": "text" },
+      "citta": { "type": "keyword" },
+      "prezzo_notte": { "type": "float" },
+      "servizi": { "type": "keyword" },
+      "posizione": { "type": "geo_point" }
+    }
+  }
+}
+
+# 2. Creazione indice recensioni
+PUT /recensioni
+{
+  "mappings": {
+    "properties": {
+      "id_recensione": { "type": "keyword" },
+      "id_hotel": { "type": "keyword" },
+      "utente": { "type": "keyword" },
+      "testo_recensione": { "type": "text" },
+      "punteggio_pulizia": { "type": "integer" },
+      "punteggio_servizi": { "type": "integer" },
+      "data_recensione": { "type": "date" }
+    }
+  }
+}
+#Inserimento dei dati degli hotel 
+POST /hotel/_bulk
+{ "index": { "_id": "H01" } }
+{"id_hotel":"H01","nome":"Grand Hotel Salento","descrizione":"Splendido hotel situato nel centro storico, con camere silenziose, luminose e vista panoramica.","citta":"Lecce","prezzo_notte":120.50,"servizi":["Wi-Fi","Piscina","Aria Condizionata"],"posizione":{"lat":40.3520,"lon":18.1690}}
+{ "index": { "_id": "H02" } }
+{"id_hotel":"H02","nome":"Hotel Barocco Cozy","descrizione":"Stanze ampie e vicino al centro. Ottimo per famiglie e viaggi di lavoro. Camere tranquille e colazione inclusa.","citta":"Lecce","prezzo_notte":85.00,"servizi":["Wi-Fi","Parcheggio","Colazione"],"posizione":{"lat":40.3550,"lon":18.1710}}
+{ "index": { "_id": "H03" } }
+{"id_hotel":"H03","nome":"Roma Luxury Resort","descrizione":"Struttura esclusiva e di lusso nel cuore di Roma. Suite principesche, centro benessere e camere incredibilmente silenziose dotate di ogni comfort moderno.","citta":"Roma","prezzo_notte":310.00,"servizi":["Wi-Fi","Piscina","Spa","Palestra","Aria Condizionata"],"posizione":{"lat":41.9028,"lon":12.4964}}
+{ "index": { "_id": "H04" } }
+{"id_hotel":"H04","nome":"Milano Central Room","descrizione":"Hotel moderno e funzionale a pochi passi dalla stazione centrale. Camere economiche ideali per brevi soggiorni lavorativi, un po' rumorose ma in posizione strategica.","citta":"Milano","prezzo_notte":65.00,"servizi":["Wi-Fi","Aria Condizionata"],"posizione":{"lat":45.4850,"lon":9.2030}}
+{ "index": { "_id": "H05" } }
+{"id_hotel":"H05","nome":"Eco Boutique Hotel","descrizione":"Struttura ecosostenibile immersa nel verde ma vicino al centro. Atmosfera rilassante, camere isolate acusticamente e silenziose, ristorante a km zero.","citta":"Roma","prezzo_notte":145.00,"servizi":["Wi-Fi","Parcheggio","Ristorante"],"posizione":{"lat":41.8870,"lon":12.4700}}
+{ "index": { "_id": "H11" } }
+{"id_hotel":"H11","nome":"Napoli Plebiscito Suite","descrizione":"Hotel accogliente vicino al centro di Napoli. Ottima colazione con sfogliatelle calde e camere silenziose affacciate sul cortile storico.","citta":"Napoli","prezzo_notte":95.00,"servizi":["Wi-Fi","Aria Condizionata","Colazione"],"posizione":{"lat":40.8360,"lon":14.2490}}
+{ "index": { "_id": "H12" } }
+{"id_hotel":"H12","nome":"Venezia Canal View","descrizione":"Splendida struttura storica con una terrazza magnifica che offre una vista panoramica sul Canal Grande. Un sogno per coppie.","citta":"Venezia","prezzo_notte":280.00,"servizi":["Wi-Fi","Ristorante","Bar"],"posizione":{"lat":45.4375,"lon":12.3350}}
+{ "index": { "_id": "H13" } }
+{"id_hotel":"H13","nome":"Roma Colosseum Inn","descrizione":"Boutique hotel a pochi passi dal Colosseo. Camere eleganti, luminose e incredibilmente silenziose grazie ai doppi vetri di ultima generazione.","citta":"Roma","prezzo_notte":195.00,"servizi":["Wi-Fi","Aria Condizionata","Minibar"],"posizione":{"lat":41.8902,"lon":12.4923}}
+{ "index": { "_id": "H14" } }
+{"id_hotel":"H14","nome":"Milano Duomo Luxury","descrizione":"Soggiorno esclusivo nel pieno centro di Milano. Suite di lusso con vista panoramica sulle guglie del Duomo e SPA privata per gli ospiti.","citta":"Milano","prezzo_notte":420.00,"servizi":["Wi-Fi","Spa","Palestra","Aria Condizionata"],"posizione":{"lat":45.4642,"lon":9.1900}}
+{ "index": { "_id": "H15" } }
+{"id_hotel":"H15","nome":"Lecce Piazza Sant'Oronzo","descrizione":"Grazioso affittacamere situato vicino al centro storico di Lecce. Stanze arredate in stile rustico salentino, tranquille e ben ventilate.","citta":"Lecce","prezzo_notte":70.00,"servizi":["Wi-Fi","Parcheggio"],"posizione":{"lat":40.3532,"lon":18.1740}}
+{ "index": { "_id": "H16" } }
+{"id_hotel":"H16","nome":"Roma Vatican Garden","descrizione":"Immerso nella quiete vicino alle mura vaticane. Struttura ideale per famiglie, dotata di un giardino interno e camere isolate, tranquille e silenziose.","citta":"Roma","prezzo_notte":125.00,"servizi":["Wi-Fi","Parcheggio","Colazione","Aria Condizionata"],"posizione":{"lat":41.9022,"lon":12.4539}}
+{ "index": { "_id": "H17" } }
+{"id_hotel":"H17","nome":"Firenze Arno Comfort","descrizione":"Hotel moderno sul lungarno. Offre una magnifica vista panoramica sui ponti storici di Firenze e stanze dotate di smart TV e letti king-size.","citta":"Firenze","prezzo_notte":150.00,"servizi":["Wi-Fi","Aria Condizionata","Bar"],"posizione":{"lat":43.7680,"lon":11.2430}}
+{ "index": { "_id": "H18" } }
+{"id_hotel":"H18","nome":"Milano Brera Design","descrizione":"Situato nello storico quartiere degli artisti, l'hotel offre camere silenziose vicino al centro e alle gallerie d'arte principali. Design ricercato ed eclettico.","citta":"Milano","prezzo_notte":165.00,"servizi":["Wi-Fi","Palestra","Aria Condizionata"],"posizione":{"lat":45.4715,"lon":9.1875}}
+{ "index": { "_id": "H19" } }
+{"id_hotel":"H19","nome":"Roma Villa Borghese Boutique","descrizione":"Hotel di grande charme immerso nella tranquillità ma vicino al centro storico di Roma. Stanze lussuose e terrazza panoramica per aperitivi.","citta":"Roma","prezzo_notte":240.00,"servizi":["Wi-Fi","Piscina","Spa","Ristorante"],"posizione":{"lat":41.9130,"lon":12.4870}}
+{ "index": { "_id": "H20" } }
+{"id_hotel":"H20","nome":"Lecce Messapia Resort","descrizione":"Grande struttura con parcheggio privato ideale per chi vuole esplorare il Salento. Offre una bellissima piscina e stanze molto ampie.","citta":"Lecce","prezzo_notte":90.00,"servizi":["Wi-Fi","Piscina","Parcheggio"],"posizione":{"lat":40.3410,"lon":18.1550}}
+
+#Verifica della presenza dei dati
+GET /hotel/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+
+#Inserimento dati delle recensioni
+POST /recensioni/_bulk
+{ "index": { "_id": "R101" } }
+{"id_recensione": "R101", "id_hotel":"H01","utente":"Bruno Z.","testo_recensione":"Soggiorno fantastico! Camere silenziose.","punteggio_pulizia":5,"punteggio_servizi":5,"data_recensione":"2026-06-20"}
+{ "index": { "_id": "R102" } }
+{"id_recensione": "R102","id_hotel":"H01","utente":"Marika M.","testo_recensione":"Ottima piscina, camera silenziosa.","punteggio_pulizia":4,"punteggio_servizi":4,"data_recensione":"2026-06-22"}
+{ "index": { "_id": "R103" } }
+{"id_recensione": "R103","id_hotel":"H02","utente":"Angelica C.","testo_recensione":"Stanze ampie e silenziose, relax.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-18"}
+{ "index": { "_id": "R104" } }
+{"id_recensione": "R104","id_hotel":"H02","utente":"Marco R.","testo_recensione":"Buon prezzo, colazione migliorabile.","punteggio_pulizia":4,"punteggio_servizi":3,"data_recensione":"2026-06-15"}
+{ "index": { "_id": "R105" } }
+{"id_recensione": "R105","id_hotel":"H03","utente":"Elena V.","testo_recensione":"Sogno ad occhi aperti, Spa incredibile.","punteggio_pulizia":5,"punteggio_servizi":5,"data_recensione":"2026-06-23"}
+{ "index": { "_id": "R106" } }
+{"id_recensione": "R106","id_hotel":"H03","utente":"John D.","testo_recensione":"Lussuosa ma troppo costosa.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-10"}
+{ "index": { "_id": "R107" } }
+{"id_recensione": "R107","id_hotel":"H04","utente":"Luca S.","testo_recensione":"Comoda stazione, ma rumorosa.","punteggio_pulizia":3,"punteggio_servizi":2,"data_recensione":"2026-06-12"}
+{ "index": { "_id": "R108" } }
+{"id_recensione": "R108","id_hotel":"H04","utente":"Sara T.","testo_recensione":"Struttura vecchia e rumorosa.","punteggio_pulizia":3,"punteggio_servizi":3,"data_recensione":"2026-06-14"}
+{ "index": { "_id": "R109" } }
+{"id_recensione": "R109","id_hotel":"H05","utente":"Davide N.","testo_recensione":"Eco-friendly e silenziosissimo.","punteggio_pulizia":4,"punteggio_servizi":5,"data_recensione":"2026-06-21"}
+{ "index": { "_id": "R110" } }
+{"id_recensione": "R110","id_hotel":"H05","utente":"Chiara F.","testo_recensione":"Tranquillo, ma parcheggio stretto.","punteggio_pulizia":4,"punteggio_servizi":3,"data_recensione":"2026-06-19"}
+{ "index": { "_id": "R111" } }
+{"id_recensione": "R111","id_hotel":"H06","utente":"Giulia R.","testo_recensione":"Soggiorno fantastico! Struttura incantevole, un vero gioiello a Firenze.","punteggio_pulizia":5,"punteggio_servizi":5,"data_recensione":"2026-06-25"}
+{ "index": { "_id": "R112" } }
+{"id_recensione": "R112","id_hotel":"H06","utente":"Alessandro V.","testo_recensione":"Posizione centrale comoda, ma le camere silenziose e isolate sono il vero punto di forza.","punteggio_pulizia":4,"punteggio_servizi":5,"data_recensione":"2026-06-24"}
+{ "index": { "_id": "R113" } }
+{"id_recensione": "R113","id_hotel":"H07","utente":"Simone L.","testo_recensione":"Hotel moderno, perfetto per muoversi sui Navigli. Nel weekend un po' rumoroso.","punteggio_pulizia":4,"punteggio_servizi":4,"data_recensione":"2026-06-22"}
+{ "index": { "_id": "R114" } }
+{"id_recensione": "R114","id_hotel":"H07","utente":"Valeria N.","testo_recensione":"Servizio impeccabile e stanze tecnologiche, ma la pulizia sotto il letto era migliorabile.","punteggio_pulizia":3,"punteggio_servizi":5,"data_recensione":"2026-06-17"}
+{ "index": { "_id": "R115" } }
+{"id_recensione": "R115","id_hotel":"H08","utente":"Federica P.","testo_recensione":"Trastevere è magica e questo hotel la rende ancora più bella. Pulizia da 10 e lode!","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-26"}
+{ "index": { "_id": "R116" } }
+{"id_recensione": "R116","id_hotel":"H08","utente":"Matteo M.","testo_recensione":"Un'oasi di pace. Camere silenziose pur essendo in mezzo al centro della movida di Roma.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-23"}
+{ "index": { "_id": "R117" } }
+{"id_recensione": "R117","id_hotel":"H09","utente":"Stefano B.","testo_recensione":"Piscina stupenda e vista panoramica mozzafiato sul mare del Salento.","punteggio_pulizia":4,"punteggio_servizi":4,"data_recensione":"2026-06-21"}
+{ "index": { "_id": "R118" } }
+{"id_recensione": "R118","id_hotel":"H09","utente":"Elena G.","testo_recensione":"Soggiorno fantastico in una terra meravigliosa. Struttura pulitissima e accogliente.","punteggio_pulizia":5,"punteggio_servizi":5,"data_recensione":"2026-06-19"}
+{ "index": { "_id": "R119" } }
+{"id_recensione": "R119","id_hotel":"H10","utente":"Roberto D.","testo_recensione":"Ottimo rapporto qualità prezzo per essere vicino alla stazione Termini e al centro.","punteggio_pulizia":4,"punteggio_servizi":3,"data_recensione":"2026-06-25"}
+{ "index": { "_id": "R120" } }
+{"id_recensione": "R120","id_hotel":"H10","utente":"Anna T.","testo_recensione":"Camere ben isolate acusticamente, non si sente il rumore dei treni. Personale gentile.","punteggio_pulizia":4,"punteggio_servizi":4,"data_recensione":"2026-06-20"}
+{ "index": { "_id": "R121" } }
+{"id_recensione": "R121","id_hotel":"H11","utente":"Fabio M.","testo_recensione":"Nel pieno centro di Napoli! Accoglienza calorosa e stanze molto tranquille.","punteggio_pulizia":4,"punteggio_servizi":5,"data_recensione":"2026-06-26"}
+{ "index": { "_id": "R122" } }
+{"id_recensione": "R122","id_hotel":"H11","utente":"Clara B.","testo_recensione":"Colazione super con sfogliatella calda, ma le camere silenziose sul cortile interno sono da 5 stelle.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-24"}
+{ "index": { "_id": "R123" } }
+{"id_recensione": "R123","id_hotel":"H12","utente":"Paolo F.","testo_recensione":"La vista panoramica sul Canal Grande dalla terrazza vale ogni singolo euro speso. Splendido.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-27"}
+{ "index": { "_id": "R124" } }
+{"id_recensione": "R124","id_hotel":"H12","utente":"Sofia T.","testo_recensione":"Soggiorno fantastico a Venezia, posizione comoda anche se un po' caro. Servizio impeccabile.","punteggio_pulizia":4,"punteggio_servizi":5,"data_recensione":"2026-06-25"}
+{ "index": { "_id": "R125" } }
+{"id_recensione": "R125","id_hotel":"H13","utente":"Emanuele S.","testo_recensione":"A due passi dal Colosseo, camere silenziose nonostante il traffico romano. Struttura nuovissima.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-26"}
+{ "index": { "_id": "R126" } }
+{"id_recensione": "R126","id_hotel":"H13","utente":"Martina K.","testo_recensione":"Boutique hotel fantastico, camere molto luminose e pulizia davvero impeccabile.","punteggio_pulizia":5,"punteggio_servizi":5,"data_recensione":"2026-06-23"}
+{ "index": { "_id": "R127" } }
+{"id_recensione": "R127","id_hotel":"H14","utente":"Claudio V.","testo_recensione":"Lusso sfrenato in centro a Milano. Terrazza eccezionale con vista panoramica sul Duomo.","punteggio_pulizia":5,"punteggio_servizi":5,"data_recensione":"2026-06-28"}
+{ "index": { "_id": "R128" } }
+{"id_recensione": "R128","id_hotel":"H14","utente":"Beatrice D.","testo_recensione":"Spa bellissima e riservata, stanze tecnologiche ed eleganti nel cuore della città.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-26"}
+{ "index": { "_id": "R129" } }
+{"id_recensione": "R129","id_hotel":"H15","utente":"Giorgio L.","testo_recensione":"Vicino al centro storico di Lecce, accogliente e tranquillo. Ottima ospitalità salentina.","punteggio_pulizia":4,"punteggio_servizi":4,"data_recensione":"2026-06-18"}
+{ "index": { "_id": "R130" } }
+{"id_recensione": "R130","id_hotel":"H16","utente":"Ludovica N.","testo_recensione":"Ideale per famiglie, giardino rilassante e camere silenziose lontane dal caos del centro.","punteggio_pulizia":4,"punteggio_servizi":5,"data_recensione":"2026-06-24"}
+{ "index": { "_id": "R131" } }
+{"id_recensione": "R131","id_hotel":"H16","utente":"Filippo P.","testo_recensione":"Struttura pulitissima e personale cordiale. Camere isolate acusticamente in modo perfetto.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-21"}
+{ "index": { "_id": "R132" } }
+{"id_recensione": "R132","id_hotel":"H17","utente":"Veronica G.","testo_recensione":"Finestra affacciata sull'Arno con vista panoramica indimenticabile. Letto comodissimo.","punteggio_pulizia":4,"punteggio_servizi":4,"data_recensione":"2026-06-25"}
+{ "index": { "_id": "R133" } }
+{"id_recensione": "R133","id_hotel":"H18","utente":"Tommaso E.","testo_recensione":"Quartiere Brera stupendo, hotel di design con camere silenziose vicino al centro. Consigliato!","punteggio_pulizia":5,"punteggio_servizi":5,"data_recensione":"2026-06-26"}
+{ "index": { "_id": "R134" } }
+{"id_recensione": "R134","id_hotel":"H18","utente":"Ilaria C.","testo_recensione":"Design splendido e pulizia ottima, le stanze interne sono super silenziose e riposanti.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-23"}
+{ "index": { "_id": "R135" } }
+{"id_recensione": "R135","id_hotel":"H19","utente":"Lorenzo M.","testo_recensione":"Soggiorno fantastico a Villa Borghese. Terrazza con vista panoramica su tutta Roma.","punteggio_pulizia":5,"punteggio_servizi":5,"data_recensione":"2026-06-27"}
+{ "index": { "_id": "R136" } }
+{"id_recensione": "R136","id_hotel":"H19","utente":"Alessia O.","testo_recensione":"Un paradiso vicino al centro di Roma. Atmosfera lussuosa, spa accogliente e pulizia al top.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-24"}
+{ "index": { "_id": "R137" } }
+{"id_recensione": "R137","id_hotel":"H20","utente":"Marco W.","testo_recensione":"Piscina enorme, ottimo parcheggio per girare le spiagge del Salento. Stanze pulite.","punteggio_pulizia":4,"punteggio_servizi":4,"data_recensione":"2026-06-22"}
+{ "index": { "_id": "R138" } }
+{"id_recensione": "R138","id_hotel":"H01","utente":"Andrea P.","testo_recensione":"Torno sempre qui a Lecce. Soggiorno fantastico e personale squisito.","punteggio_pulizia":5,"punteggio_servizi":5,"data_recensione":"2026-06-26"}
+{ "index": { "_id": "R139" } }
+{"id_recensione": "R139","id_hotel":"H03","utente":"Enrica J.","testo_recensione":"Camere silenziose nel cuore di Roma, sfarzo e pulizia impeccabile ovunque.","punteggio_pulizia":5,"punteggio_servizi":5,"data_recensione":"2026-06-25"}
+{ "index": { "_id": "R140" } }
+{"id_recensione": "R140","id_hotel":"H05","utente":"Giovanni D.","testo_recensione":"Struttura green eccezionale, stanze isolate e silenziose per un riposo perfetto.","punteggio_pulizia":5,"punteggio_servizi":4,"data_recensione":"2026-06-24"}
+
+
+
+#Verifica della presenza dei dati 
+GET /recensioni/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}

@@ -1,0 +1,44 @@
+###QUERY### 
+#Elencare gli ordini spediti tramite un determinato corriere.
+SELECT 
+    o.IdOrdine, 
+    o.DataOrdine, 
+    o.StatoOrdine, 
+    s.IdSpedizione, 
+    s.StatoSpedizione, 
+    c.Nome
+FROM ORDINE o
+JOIN SPEDIZIONE s ON o.IdSpedizione = s.IdSpedizione
+JOIN CORRIERE c ON s.IdCorriere = c.IdCorriere
+WHERE c.Nome = 'DHL Express';
+
+#Trovare i prodotti presenti nel maggior numero di ordini.
+SELECT 
+    p.CodiceProd, 
+    p.Nome AS NomeProdotto, 
+    COUNT(ro.IdOrdine) AS NumeroDiOrdiniInCuiEPresente
+FROM PRODOTTO p
+JOIN RIGA_ORDINE ro ON p.CodiceProd = ro.CodiceProd
+GROUP BY p.CodiceProd, p.Nome
+ORDER BY NumeroDiOrdiniInCuiEPresente DESC;
+
+#Controllare le giacenze
+SELECT CodiceProd, Nome, QuantitaDisponibile 
+FROM PRODOTTO;
+
+#Monitorare le spedizioni 
+SELECT o.IdOrdine, s.IdSpedizione, c.Nome, s.StatoSpedizione, s.DataPartenza
+FROM ORDINE o
+JOIN SPEDIZIONE s ON o.IdSpedizione = s.IdSpedizione
+JOIN CORRIERE c ON s.IdCorriere = c.IdCorriere;
+
+#Verificare i tempi di consegna sfruttando la colonna generata nel DDL
+SELECT IdSpedizione, DataPartenza, DataConsegnaPrevista,
+       CAST(julianday(DataConsegnaPrevista) - julianday(DataPartenza) AS INT) AS GiorniDiConsegna
+FROM SPEDIZIONE;
+
+#Vedere totale ordine
+SELECT o.IdOrdine, o.DataOrdine, SUM(ro.Quantita * ro.PrezzoApplicato) AS Totale_Ordine
+FROM ORDINE o
+JOIN RIGA_ORDINE ro ON o.IdOrdine = ro.IdOrdine
+GROUP BY o.IdOrdine, o.DataOrdine;

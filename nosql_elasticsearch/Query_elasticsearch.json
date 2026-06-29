@@ -1,0 +1,64 @@
+##################QUERY 1: ricerca testuale avanzata su parole, frasi e contenuti linguistici. 
+#QUERY 1: Ricerca per "Camere silenziose"
+GET /hotel/_search
+{
+  "query": {
+    "match_phrase": {
+      "descrizione": "camere silenziose"
+    }
+  }
+}
+
+#QUERY 1: Ricerca per "vista panoramica"
+GET /recensioni/_search
+{
+  "query": {
+    "match": {
+      "testo_recensione": "vista panoramica"
+    }
+  }
+}
+
+################QUERY 2: Effettuiamo una query con campi, valori esatti, intervalli e combinazioni di condizioni.#################
+
+#QUERY 2: Trovare un Hotel a Roma con prezzo per notte tra 100 e 300 euro.
+GET /hotel/_search
+{
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "citta": "Roma" } },
+        { "range": { 
+            "prezzo_notte": { "gte": 100, "lte": 300 } 
+          } 
+        }
+      ]
+    }
+  }
+}
+
+#################QUERY 3: conteggi, raggruppamenti, statistiche e analisi sintetiche sui dati#############
+#QUERY 3: Calcolo dell voto medio dei servizi e il massimo punteggio ricevuto per la pulizia per ogni hotel.  
+GET /recensioni/_search
+{
+  "size": 0,
+  "aggs": {
+    "raggruppamento_per_hotel": {
+      "terms": {
+        "field": "id_hotel"
+      },
+      "aggs": {
+        "voto_medio_servizi": {
+          "avg": {
+            "field": "punteggio_servizi"
+          }
+        },
+        "voto_massimo_pulizia": {
+          "max": {
+            "field": "punteggio_pulizia"
+          }
+        }
+      }
+    }
+  }
+}
